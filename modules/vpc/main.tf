@@ -102,10 +102,14 @@ resource "aws_security_group" "Docker_Agent_SG" {
   cidr_blocks      = ["0.0.0.0/0"]
   }
 
+  tags = {
+    "name" = "Docker_Agent_SG"
+  }
+
 }
 
 resource "aws_security_group" "Jenkins_SG" {
-  name        = "Docker_Agent_SG"
+  name        = "Jenkins_SG"
   vpc_id      = aws_vpc.vpc_terraform.id
   ingress {
     from_port        = 4243 
@@ -133,6 +137,10 @@ resource "aws_security_group" "Jenkins_SG" {
   to_port          = 0
   protocol         = "-1"
   cidr_blocks      = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    "name" = "Jenkins_SG"
   }
 
 }
